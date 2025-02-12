@@ -1,0 +1,65 @@
+<html>
+<script>
+  let a=10,b=20,c=60,d=40;
+  let largest = "";
+  if(a>=b & a>=c & a>=d){
+  	largest=a;
+  	} else if(b>=a & b>=c & b>=d){
+  		largest=b;
+  	} else if (c>=a & c>=b & c>=d){
+  		largest=c;
+  	} else {
+  		largest = d;
+  	}
+  	console.log("largest number is:",+largest);
+  	
+/----------------------------------------------------/
+
+let array = [10,20,30,40,50,60,70];
+let thirdBiggest = findThirdBiggest(array);
+	if(thirdBiggest !== undefined){
+		console.log("thirdBiggest number is:",thirdBiggest);
+	}
+function findThirdBiggest(arr){
+	arr.sort((a,b) => b - a);
+	return arr[2];
+}
+
+/-----------------------------------------------/
+
+
+function findreversednumber(num){
+	let reversednumber=num.toString().split('').reverse().join('');
+	return parseInt(reversednumber);
+}
+let number = 12345;
+let reversednumber = findreversednumber(number);
+console.log(reversednumber);
+
+/------------------------------------------------/
+
+function findrversedstring(str){
+	return str.split('').reverse().join('');
+}
+let input = "hello";
+let reversed = findrversedstring(input);
+	console.log(reversed);
+
+/-----------------------------------------/
+
+function finduniquewords(paragraph){
+	const words = paragraph.
+	toLowerCase().
+	split(/\s+/);
+	const uniquewords = new Set(words);
+	return uniquewords;
+}
+
+let paragraph = "this is a test! this is javasript! this is sai";
+let uniquewords = finduniquewords(paragraph);
+console.log(uniquewords) 
+
+
+
+  </script>
+  </html>
