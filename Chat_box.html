@@ -1,0 +1,136 @@
+<html>
+<body>
+<style>
+	.msgitem1{
+		padding: 10px; border: 1px solid #666; margin:10px; background-color: #ffeeef;text-align:;
+	}
+	.msgitem1 div:first-child{ font-style:italic; color:#888; font-weight:bold; }
+	.msgitem1 div:last-child{ font-style:italic; color:#f88; font-weight:bold;  }
+	.msgitem2{
+		padding: 10px; border: 1px solid #666; margin:10px; background-color: #eeffee; text-align: right;
+	}
+	.msgitem2 div:first-child{ font-style:italic; color:#888; font-weight:bold; }
+	.msgitem2 div:last-child{ font-style:italic; color:#f88; font-weight:bold; }
+</style>
+
+<div style="display: flex;">
+	<div style="width:50%;">
+
+		<div><input type="text" id="user1" value="Satish"></div>
+
+		<div id="messages1" style="height:300px; overflow: auto; border: 1px solid black; padding:10px;"></div>
+
+		<div>
+			<input type="text" id="msg1" style="width:80%;" onkeyup="msg_key_event1(event)">
+			<input type="button" value="Send" onclick="send_msg1()">
+		</div>
+
+	</div>
+	<div style="width:50%;">
+
+		<div><input type="text" id="user2" value="Subhash"></div>
+
+		<div id="messages2" style="height:300px; overflow: auto; border: 1px solid black; padding:10px;"></div>
+
+		<div>
+			<input type="text" id="msg2" style="width:80%;" onkeyup="msg_key_event2(event)">
+			<input type="button" value="Send" onclick="send_msg2()">
+		</div>
+
+	</div>
+</div>
+
+
+
+<script>
+
+var msgs1 = [];
+var msgs2 = [];
+
+function counter() {
+    for (var i = 0; i < msgs1.length; i++) {
+        msgs1[i].time++;
+    }
+    for (var i = 0; i < msgs2.length; i++) {
+        msgs2[i].time++;
+    }
+    update_time();
+}
+setInterval(counter, 1000);
+
+function update_time() {
+    var messages1 = document.getElementById("messages1").children;
+    for (var i = 0; i < msgs1.length; i++) {
+        var t = messages1[i].children[messages1[i].children.length - 1];
+        t.innerHTML = msgs1[i].time + " seconds ago";
+    }
+
+    var messages2 = document.getElementById("messages2").children;
+    for (var i = 0; i < msgs2.length; i++) {
+        var t = messages2[i].children[messages2[i].children.length - 1];
+        t.innerHTML = msgs2[i].time + " seconds ago";
+    }
+}
+
+
+function msg_key_event1(e) {
+    if (e.keyCode == 13) {
+        send_msg1();
+    }
+}
+function send_msg1() {
+	  const d=new Date();
+		var s = d.toLocaleTimeString();
+    var user = document.getElementById("user1").value;
+    var msg = document.getElementById("msg1").value;
+    document.getElementById("msg1").value = "";
+    document.getElementById("msg1").focus();
+    var newele = document.createElement("div");
+    newele.className = "msgitem1";
+    newele.innerHTML = "<div>" + user + "</div><div>" + msg + "</div><div style='text-align: right'>"+s+"</div><div style='text-align: right'>0 seconds ago </div>";
+    document.getElementById("messages1").appendChild(newele);
+    msgs1.push({ msg: msg, time: 0 });
+    document.getElementById("messages1").scrollTo(0, 99999);
+
+    var newele = document.createElement("div");
+    newele.className = "msgitem2";
+    newele.innerHTML = "<div>" + user + "</div><div>" + msg + "</div><div style='text-align: left'>"+s+"</div><div style='text-align: left'>0 seconds ago</div>";
+    document.getElementById("messages2").appendChild(newele);
+    msgs2.push({ msg: msg, time: 0 });
+    document.getElementById("messages2").scrollTo(0, 99999);
+}
+
+function msg_key_event2(e) {
+    if (e.keyCode == 13) {
+        send_msg2();
+    }
+}
+function send_msg2() {
+		const d=new Date();
+		var s = d.toLocaleTimeString();
+    var user = document.getElementById("user2").value;
+    var msg = document.getElementById("msg2").value;
+    document.getElementById("msg2").value = "";
+    document.getElementById("msg2").focus();
+    var newele = document.createElement("div");
+    newele.innerHTML = "<div>" + user + "</div><div>" + msg + "</div><div style='text-align: right'>"+s+"</div><div style='text-align: right'>0 seconds ago</div>";
+    newele.className = "msgitem1";
+    document.getElementById("messages2").appendChild(newele);
+    msgs2.push({ msg: msg, time: 0 });
+    document.getElementById("messages2").scrollTo(0, 99999);
+
+    var newele = document.createElement("div");
+    newele.className = "msgitem2";
+    newele.innerHTML = "<div>" + user + "</div><div>" + msg + "</div><div style='text-align: left'>"+s+"</div><div style='text-align: left'>0 seconds ago</div>";
+    document.getElementById("messages1").appendChild(newele);
+    msgs1.push({ msg: msg, time: 0 });
+    document.getElementById("messages1").scrollTo(0, 99999);
+}
+</script>
+</body>
+</html>
+
+
+</body>
+</html>
+
